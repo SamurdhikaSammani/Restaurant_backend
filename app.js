@@ -19,7 +19,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // To parse URL-encoded bodies
-app.use("/api/v1/reservations", reservationRoute);  // Use the reservation routes
+app.use("/api/v1/reservation", reservationRoute);  // Use the reservation routes
 
 dbConnection();
 

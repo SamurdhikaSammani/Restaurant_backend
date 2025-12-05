@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { VirtualType } from "mongoose";
+import validator from "validator";
 
 const reservationSchema = new mongoose.Schema({
     firstName: {
@@ -17,7 +17,7 @@ const reservationSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        validate: { validator:isEmail, message: "Please enter a valid email" },
+        validate: { validator: validator.isEmail, message: "Please enter a valid email" },
     },
     phone: {
         type: String,

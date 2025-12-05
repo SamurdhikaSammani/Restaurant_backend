@@ -1,5 +1,5 @@
-import ErrorHandler from "../utils/errorHandler.js";
-import Reservation from "../models/reservationModel.js";
+import ErrorHandler from "../error/error.js";
+import { Reservation } from "../models/reservationSchema.js";
 
 export const sendReservation = async (req, res, next) => {
     const { firstName, lastName, email, phone, time, date } = req.body;
@@ -22,12 +22,11 @@ export const sendReservation = async (req, res, next) => {
         });
     } catch (error) {
         if(error.name === 'ValidationError') {
-         const ValidationError= Object.values(error.errors).map(
-            (err) => err.message
-         );
+         const ValidationError= Object.values(error.errors).map((err) => err.message);
          return next(new ErrorHandler(ValidationError.join(', '), 400));
          
         }
+        return next(error);
     }
 };
 
